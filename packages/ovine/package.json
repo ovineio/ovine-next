@@ -1,0 +1,50 @@
+{
+  "name": "@ovine/next",
+  "version": "1.0.0",
+  "description": "@ovine/next",
+  "homepage": "https://github.com/ovineio/ovine-next",
+  "bugs": "https://github.com/ovineio/ovine-next/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovineio/ovine-next"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "bin": {
+    "max": "bin/ovine.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "eslint.js",
+    "index.d.ts",
+    "index.js",
+    "plugin-utils.d.ts",
+    "plugin-utils.js",
+    "prettier.js",
+    "stylelint.js",
+    "test-setup.js",
+    "test.d.ts",
+    "test.js"
+  ],
+  "scripts": {
+    "build": "umi-scripts father build",
+    "build:deps": "umi-scripts bundleDeps",
+    "dev": "umi-scripts father dev"
+  },
+  "dependencies": {
+    "@umijs/lint": "4.0.30",
+    "@umijs/plugins": "4.0.30",
+    "antd": "^4.20.6",
+    "eslint": "8.15.0",
+    "stylelint": "14.8.2",
+    "umi": "4.0.30"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "chencheng <sorrycc@gmail.com> (https://github.com/sorrycc)"
+  ]
+}

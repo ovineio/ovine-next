@@ -1,0 +1,36 @@
+{
+  "name": "create-ovine",
+  "version": "1.0.0",
+  "description": "create-umi",
+  "homepage": "https://github.com/ovineio/ovine-next",
+  "bugs": "https://github.com/ovineio/ovine-next/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovineio/ovine-next"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "create-umi": "bin/create-umi.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "umi-scripts father build",
+    "build:deps": "umi-scripts bundleDeps",
+    "dev": "umi-scripts father dev",
+    "test": "umi-scripts jest-turbo"
+  },
+  "dependencies": {
+    "@umijs/utils": "4.0.30"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "chencheng <sorrycc@gmail.com> (https://github.com/sorrycc)"
+  ]
+}
