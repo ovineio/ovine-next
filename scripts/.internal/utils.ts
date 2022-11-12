@@ -1,5 +1,5 @@
 import spawn from '@umijs/utils/compiled/cross-spawn';
-import * as logger from '@umijs/utils/src/logger';
+import * as logger from '@umijs/utils/dist/logger';
 import type { SpawnSyncOptions } from 'child_process';
 import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
@@ -65,11 +65,13 @@ export function setExcludeFolder(opts: {
 }
 
 export function spawnSync(cmd: string, opts: SpawnSyncOptions) {
+  logger.info(`Execute command: (${cmd})`);
   const result = spawn.sync(cmd, {
     shell: true,
     stdio: 'inherit',
     ...opts,
   });
+
   if (result.status !== 0) {
     logger.error(`Execute command error (${cmd})`);
     process.exit(1);

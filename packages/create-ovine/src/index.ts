@@ -15,11 +15,11 @@ import { existsSync } from 'fs';
 import { dirname, join } from 'path';
 
 const testData = {
-  name: 'umi-plugin-demo',
+  name: 'ovine-app',
   description: 'nothing',
-  mail: 'xiaohuoni@gmail.com',
-  author: 'xiaohuoni',
-  org: 'umijs',
+  mail: 'careytoboo@gmail.com',
+  author: 'careytoboo',
+  org: 'ovineio',
   version: require('../package').version,
   npmClient: 'pnpm',
   registry: 'https://registry.npmjs.org/',
@@ -62,11 +62,10 @@ export default async ({ cwd, args }: { cwd: string; args: IArgs }) => {
         {
           type: 'select',
           name: 'appTemplate',
-          message: 'Pick Umi App Template',
+          message: 'Pick Ovine App Template',
           choices: [
             { title: 'Simple App', value: 'app' },
-            { title: 'Ant Design Pro', value: 'max' },
-            { title: 'Vue Simple App', value: 'vue-app' },
+            { title: 'Demo App', value: 'demo' },
           ],
           initial: 0,
         },

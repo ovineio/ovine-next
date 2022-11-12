@@ -1,3 +1,3 @@
-# @ovine/umi
+# @ovine/next
 
-See our website [umijs](https://umijs.org) for more information.
+See our website [ovine](https://ovine.igroupes.com/) for more information.

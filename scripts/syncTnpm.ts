@@ -1,4 +1,4 @@
-import * as logger from '@umijs/utils/src/logger';
+import * as logger from '@umijs/utils/dist/logger';
 import 'zx/globals';
 import { PATHS } from './.internal/constants';
 import { getPkgs } from './.internal/utils';

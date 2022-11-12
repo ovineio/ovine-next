@@ -21,7 +21,7 @@ import { setExcludeFolder } from './.internal/utils';
     if (['umi'].includes(pkgName)) {
       return pkgName;
     } else {
-      return `@umijs/${pkgName}`;
+      return `@ovine/${pkgName}`;
     }
   }
 
@@ -54,13 +54,14 @@ import { setExcludeFolder } from './.internal/utils';
               build: SCRIPTS.BUILD,
               'build:deps': SCRIPTS.BUNDLE_DEPS,
               dev: SCRIPTS.DEV,
+              test: SCRIPTS.TEST_TURBO,
             },
             repository: {
               type: 'git',
               url: 'https://github.com/ovineio/ovine-next',
             },
             authors: [
-              'chencheng <sorrycc@gmail.com> (https://github.com/sorrycc)',
+              'CareyToboo <careytoboo@gmail.com> (https://github.com/CareyToboo)',
             ],
             license: 'MIT',
             bugs: 'https://github.com/ovineio/ovine-next/issues',
@@ -90,7 +91,7 @@ import { setExcludeFolder } from './.internal/utils';
       // README.md
       await fs.writeFile(
         path.join(pkgDir, 'README.md'),
-        `# ${name}\n\nSee our website [umijs](https://umijs.org) for more information.`,
+        `# ${name}\n\nSee our website [ovine](https://ovine.igroupes.com/) for more information.`,
         'utf-8',
       );
 

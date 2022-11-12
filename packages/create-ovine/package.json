@@ -12,7 +12,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "create-umi": "bin/create-umi.js"
+    "create-ovine": "bin/create-ovine.js"
   },
   "files": [
     "dist",
@@ -31,6 +31,6 @@
     "access": "public"
   },
   "authors": [
-    "chencheng <sorrycc@gmail.com> (https://github.com/sorrycc)"
+    "CareyToboo <careytoboo@gmail.com> (https://github.com/careytoboo)"
   ]
 }

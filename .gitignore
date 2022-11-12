@@ -1,12 +1,12 @@
 /docs/privite
-node_moudles
+node_modules
 
 /libs/*/dist
 /libs/*/node_modules
 /.umi
 /.mfsu
 /.umi-production
-/dist
+dist
 .DS_Store
 .turbo
 *.tsbuildinfo

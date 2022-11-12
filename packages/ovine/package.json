@@ -12,7 +12,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "bin": {
-    "max": "bin/ovine.js"
+    "ovine": "bin/ovine.js"
   },
   "files": [
     "bin",
@@ -36,15 +36,19 @@
   "dependencies": {
     "@umijs/lint": "4.0.30",
     "@umijs/plugins": "4.0.30",
-    "antd": "^4.20.6",
     "eslint": "8.15.0",
+    "eslint-plugin-import": "^2.26.0",
     "stylelint": "14.8.2",
     "umi": "4.0.30"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
   },
   "publishConfig": {
     "access": "public"
   },
   "authors": [
-    "chencheng <sorrycc@gmail.com> (https://github.com/sorrycc)"
+    "CareyToboo <careytoboo@gmail.com> (https://github.com/careytoboo)"
   ]
 }

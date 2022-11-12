@@ -1,6 +1,6 @@
 {
   "name": "umi-scripts",
-  "version": "1.0.0",
+  "version": "4.0.30",
   "private": true,
   "bin": {
     "umi-scripts": "bin/umi-scripts.js"

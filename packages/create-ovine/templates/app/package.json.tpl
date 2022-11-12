@@ -2,14 +2,14 @@
   "private": true,
   "author":"{{{ author }}}",
   "scripts": {
-    "dev": "umi dev",
-    "build": "umi build",
-    "postinstall": "umi setup",
-    "setup": "umi setup",
+    "dev": "ovine dev",
+    "build": "ovine build",
+    "postinstall": "ovine setup",
+    "setup": "ovine setup",
     "start": "npm run dev"
   },
   "dependencies": {
-    "umi": "{{{ version }}}"
+    "ovine": "{{{ version }}}"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

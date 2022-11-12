@@ -1,3 +1,3 @@
-# @ovine/create-ovine
+# create-ovine
 
-See our website [umijs](https://umijs.org) for more information.
+See our website [create-ovine](https://ovine.igroupes.com/) for more information.

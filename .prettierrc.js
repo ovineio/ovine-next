@@ -3,6 +3,7 @@ module.exports = {
   singleQuote: true,
   trailingComma: "all",
   proseWrap: "never",
+  tabWidth: 2,
   overrides: [{ files: ".prettierrc", options: { parser: "json" } }],
   plugins: [
     require.resolve("prettier-plugin-packagejson"),

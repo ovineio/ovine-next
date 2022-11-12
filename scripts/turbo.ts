@@ -20,6 +20,11 @@ import { spawnSync } from './.internal/utils';
     args.unshift('--cache-dir', `".turbo"`);
   }
 
+  // 清理 jest 缓存
+  if (args.includes('test') && args.includes('--clearCache')) {
+    spawnSync(`jest --clearCache`, { cwd: PATHS.ROOT });
+  }
+
   const command = `turbo run ${args.join(' ')}`;
 
   spawnSync(command, { cwd: PATHS.ROOT });
