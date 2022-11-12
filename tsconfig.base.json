@@ -9,7 +9,7 @@
     "strict": true,
     "allowJs": true,
     "skipLibCheck": true,
-    "target": "es2019",
+    "target": "esnext",
     "jsx": "react"
   },
   "exclude": [
