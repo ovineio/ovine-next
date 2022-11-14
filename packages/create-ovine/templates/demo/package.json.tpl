@@ -2,18 +2,19 @@
   "private": true,
   "author":"{{{ author }}}",
   "scripts": {
-    "dev": "max dev",
-    "build": "max build",
+    "ovine": "ovine",
+    "dev": "ovine dev",
+    "build": "ovine build",
     "format": "prettier --cache --write .",{{#withHusky}}
     "prepare": "husky install",{{/withHusky}}
-    "postinstall": "max setup",
-    "setup": "max setup",
-    "start": "npm run dev"
+    "postinstall": "ovine setup",
+    "setup": "ovine setup",
+    "start": "{{{ npmClient }}} dev"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^2.0.1",
-    "@umijs/max": "{{{ version }}}",
+    "@ovine/next": "{{{ version }}}",
     "antd": "^4.20.7"
   },
   "devDependencies": {

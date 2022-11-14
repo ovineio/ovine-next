@@ -1,1 +1,1 @@
-import '@umijs/max/typings';
+import '@ovine/next/typings';

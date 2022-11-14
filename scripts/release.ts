@@ -10,60 +10,67 @@ import { assert, eachPkg, getPkgs } from './.internal/utils';
 (async () => {
   const { branch } = getGitRepoInfo();
   logger.info(`branch: ${branch}`);
-  const pkgs = getPkgs();
+  const pkgs = getPkgs(); // 获取所有packages/**文件夹名称
   logger.info(`pkgs: ${pkgs.join(', ')}`);
 
   // check git status
+  // 检查是否存在未提交的代码，如果有未提交的代码，报错
   logger.event('check git status');
   const isGitClean = (await $`git status --porcelain`).stdout.trim().length;
   assert(!isGitClean, 'git status is not clean');
 
   // check git remote update
+  // 检查远程仓库，是否有未拉取的代码
   logger.event('check git remote update');
   await $`git fetch`;
   const gitStatus = (await $`git status --short --branch`).stdout.trim();
   assert(!gitStatus.includes('behind'), `git status is behind remote`);
 
   // check npm registry
+  // 确认当前仓库地址为官方npm仓库
   logger.event('check npm registry');
   const registry = (await $`npm config get registry`).stdout.trim();
   assert(
-    registry === 'https://registry.npmjs.org/',
-    'npm registry is not https://registry.npmjs.org/',
+    registry.indexOf('registry.npmjs.org') > -1,
+    'npm registry is not registry.npmjs.org/',
   );
 
   // check package changed
+  // 确认存在，当前版本有更改
   logger.event('check package changed');
   const changed = (await $`lerna changed --loglevel error`).stdout.trim();
   assert(changed, `no package is changed`);
 
   // check npm ownership
-  logger.event('check npm ownership');
-  const whoami = (await $`npm whoami`).stdout.trim();
-  try {
-    await Promise.all(
-      ['umi', '@umijs/core'].map(async (pkg) => {
-        const owners = (await $`npm owner ls ${pkg}`).stdout
-          .trim()
-          .split('\n')
-          .map((line) => {
-            return line.split(' ')[0];
-          });
-        assert(owners.includes(whoami), `${pkg} is not owned by ${whoami}`);
-      }),
-    );
-  } catch (e: any) {
-    // only throw ownership error
-    if (e.message.includes('is not owned by')) {
-      throw e;
-    }
-  }
+  // 确认 命令的执行者，是该npm包的 作者。
+  // logger.event('check npm ownership');
+  // const whoami = (await $`npm whoami`).stdout.trim();
+  // try {
+  //   await Promise.all(
+  //     ['@ovine/next', 'create-ovine'].map(async (pkg) => {
+  //       const owners = (await $`npm owner ls ${pkg}`).stdout
+  //         .trim()
+  //         .split('\n')
+  //         .map((line) => {
+  //           return line.split(' ')[0];
+  //         });
+  //       assert(owners.includes(whoami), `${pkg} is not owned by ${whoami}`);
+  //     }),
+  //   );
+  // } catch (e: any) {
+  //   // only throw ownership error
+  //   if (e.message.includes('is not owned by')) {
+  //     throw e;
+  //   }
+  // }
 
   // check package.json
+  // 检查 npm 包代码的内容
   logger.event('check package.json info');
   await $`npm run check:packageFiles`;
 
   // clean
+  // 清除 package/**/dist 代码
   logger.event('clean');
   eachPkg(pkgs, ({ dir, name }) => {
     logger.info(`clean dist of ${name}`);
@@ -71,15 +78,9 @@ import { assert, eachPkg, getPkgs } from './.internal/utils';
   });
 
   // build packages
+  // 构建 package/**/src 代码
   logger.event('build packages');
   await $`npm run build:release`;
-  // await $`npm run build:extra`;
-  //
-  // logger.event('check client code change');
-  // const isGitCleanAfterClientBuild = (
-  //   await $`git status --porcelain`
-  // ).stdout.trim().length;
-  // assert(!isGitCleanAfterClientBuild, 'client code is updated');
 
   // generate changelog
   // TODO
@@ -115,14 +116,7 @@ import { assert, eachPkg, getPkgs } from './.internal/utils';
     setDepsVersion({
       pkg,
       version,
-      deps: [
-        'umi',
-        '@umijs/max',
-        '@umijs/plugins',
-        '@umijs/bundler-vite',
-        '@umijs/preset-vue',
-        '@umijs/mfsu',
-      ],
+      deps: ['@ovine/next', '@ovine/plugins'],
     });
     delete pkg.version;
     fs.writeFileSync(
@@ -154,7 +148,7 @@ import { assert, eachPkg, getPkgs } from './.internal/utils';
   // npm publish
   logger.event('pnpm publish');
   $.verbose = false;
-  const innerPkgs = pkgs.filter((pkg) => !['umi', 'max'].includes(pkg));
+  const innerPkgs = pkgs.filter((pkg) => !['ovine'].includes(pkg));
 
   // check 2fa config
   let otpArg: string[] = [];
@@ -177,10 +171,9 @@ import { assert, eachPkg, getPkgs } from './.internal/utils';
       logger.info(`+ ${pkg}`);
     }),
   );
-  await $`cd packages/umi && npm publish --tag ${tag} ${otpArg}`;
-  logger.info(`+ umi`);
-  await $`cd packages/max && npm publish --tag ${tag} ${otpArg}`;
-  logger.info(`+ @umijs/max`);
+
+  await $`cd packages/ovine && npm publish --tag ${tag} ${otpArg}`;
+  logger.info(`+ ovine`);
   $.verbose = true;
 
   // sync tnpm
