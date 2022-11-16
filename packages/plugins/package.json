@@ -1,6 +1,6 @@
 {
   "name": "@ovine/plugins",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "description": "@ovine/plugins",
   "homepage": "https://github.com/ovineio/ovine-next/tree/master/packages/plugins#readme",
   "bugs": "https://github.com/ovineio/ovine-next/issues",
